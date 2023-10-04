@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social App</title>
+
+
+  <!-- Import Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;1,300;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+  <!-- Import Bootstrap -->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  </link>
+  <!-- Import Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Main Css File -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Import Axios -->
+  <script src="../node_modules/axios/dist/axios.js"></script>
+</head>
+
+<body>
+
+  <!-- Start LOADER  -->
+  <!-- <div id="loader"
+    style="background: rgba(128, 128, 128, 0.495); position: fixed; top: 0px; bottom: 0px; left: 0px; right: 0px; margin: auto auto; display: flex; justify-content: center; align-items: center; z-index: 9999; width: 100px; height: 100px; border-radius: 20px;">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div> -->
+  <!-- End LOADER  -->
+
+  <!-- Start Modals -->
+  <!-- LOGIN MODAL -->
+  <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Username:</label>
+              <input type="text" class="form-control" id="username-input" value="Yarob99">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Password:</label>
+              <input type="password" class="form-control" id="password-input" value="123456">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--// LOGIN MODAL //-->
+
+  <!-- REGISTER MODAL -->
+  <div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Register A New User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Profile Image:</label>
+              <input type="file" class="form-control" id="register-image-input" value="Yarob99">
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input type="text" class="form-control" id="register-name-input" value="Yarob99">
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Username:</label>
+              <input type="text" class="form-control" id="register-username-input" value="Yarob99">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Password:</label>
+              <input type="password" class="form-control" id="register-password-input" value="123456">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="registerBtnClicked()">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--// REGISTER MODAL //-->
+  <!-- End Modals -->
+
+  <!-- =============ALERTS========== -->
+  <!-- <div id="success-alert" class="show fade" style="position: fixed; z-index: 999999; width: 30%; bottom: 0; right: 0;"></div> -->
+
+  <!-- Start NavBar -->
+  <nav class="sticky-top shadow navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a style="font-weight: 700; font-size: 22px;" class="navbar-brand" href="#">App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+        <div class=" d-flex" id="login-div-btn">
+          <button id="login-btn" type="button" data-bs-toggle="modal" data-bs-target="#login-modal"
+            class="btn btn-outline-success mx-2">Login</button>
+          <button id="register-btn" type="button" data-bs-toggle="modal" data-bs-target="#register-modal"
+            class="btn btn-outline-success">Register</button>
+        </div>
+        <div id="logout-div"> 
+          <button  type="button" onclick="logout()" class="btn btn-outline-danger">Logout</button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+  <!-- End NavBar -->
+  <!-- Start Content -->
+  <section class="d-flex justify-content-center">
+    <div class="col-6 mt-2">
+      <!-- Start Posts -->
+      <div class="container" id="posts">
+        <!-- Start Post -->
+
+        <!-- End Post -->
+      </div>
+      <!-- End Posts -->
+    </div>
+  </section>
+  <!-- End Content -->
+
+
+  <!-- Js File -->
+  <script src="app.js"></script>
+</body>
+
+</html>
