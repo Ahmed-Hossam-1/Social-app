@@ -104,29 +104,31 @@ function setupUI() {
   }
 }
 
-// function showAlert(customMessage, type = "success") {
-//   const alertPlaceholder = document.getElementById("success-alert");
+showAlert("nice");
 
-//   const alert = (message, type) => {
-//     const wrapper = document.createElement("div");
-//     wrapper.innerHTML = [
-//       `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-//       `   <div>${message}</div>`,
-//       '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-//       "</div>",
-//     ].join("");
+function showAlert(customMessage, type = "success") {
+  const alertPlaceholder = document.getElementById("success-alert");
 
-//     alertPlaceholder.append(wrapper);
-//   };
+  const alert = (message, type) => {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      "</div>",
+    ].join("");
 
-//   alert(customMessage, type);
+    alertPlaceholder.append(wrapper);
+  };
 
-//   // todo: hide the alert
-//   setTimeout(() => {
-//     // const alertToHide = bootstrap.Alert.getOrCreateInstance('#success-alert')
-//     // document.getElementById("success-alert").hide();
-//     // const alert = document.getElementById("success-alert")
-//     // const modalAlert = bootstrap.Alert.getInstance(alert)
-//     // modalAlert.hide()
-//   }, 2000);
-// }
+  alert(customMessage, type);
+
+  // todo: hide the alert
+  setTimeout(() => {
+    const alertToHide = bootstrap.Alert.getOrCreateInstance("#success-alert");
+    document.getElementById("success-alert").hide();
+    const alert = document.getElementById("success-alert");
+    const modalAlert = bootstrap.Alert.getInstance(alert);
+    modalAlert.hide();
+  }, 2000);
+}
